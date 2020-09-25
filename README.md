@@ -5,6 +5,7 @@ Workflow containing a series of Python scripts for the project of WangLab in IBM
 
 # Dependencies
 Python 2.7 and standard packages (scipy, sklearn, numpy, pandas, seaborn, pysam, matplotlib).
+cd-hit v4.6.8
 
 # Installation
 Clone this github repository.
