@@ -36,6 +36,7 @@ def main(file, num, output):
     # GMM fit
     gmm = mixture.GaussianMixture(n_components=num)
     gmm.fit(np.reshape(score,(samp,1)))
+    aic, bic = gmm.aic(np.reshape(score,(samp,1))), gmm.bic(np.reshape(score,(samp,1)))
     
     #gauss_mixt = np.exp(gmm.score(np.reshape(score_grid,(len(score_grid),1))))
     gauss_mixt = np.array([p * stats.norm.pdf(score_grid, mu, sd) for mu, sd, p in zip(gmm.means_.flatten(), np.sqrt(gmm.covariances_.flatten()), gmm.weights_)])
@@ -49,6 +50,8 @@ def main(file, num, output):
         gmm_mean += p * mu
     print 'mix_mean\t'+str(gmm_mean)
     print 'general_mean\t'+str(mean)
+    print 'AIC\t'+str(aic)
+    print 'BIC\t'+str(bic)
 
     # prediction
     Cls = gmm.predict(np.reshape(score,(samp,1)))
